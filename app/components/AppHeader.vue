@@ -41,6 +41,7 @@ nuxtApp.hooks.hookOnce('page:finish', () => {
       />
 
       <UButton
+        to="login"
         color="secondary"
         label="Company Portal"
         variant="subtle"
@@ -48,6 +49,7 @@ nuxtApp.hooks.hookOnce('page:finish', () => {
       />
 
       <UButton
+        to="login"
         color="primary"
         label="Student Portal"
         variant="subtle"

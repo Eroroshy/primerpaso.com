@@ -49,8 +49,26 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log('Submitted', payload)
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  try {
+    const res = await $fetch('/api/auth/login', {
+      method: 'POST',
+      body: payload.data
+    })
+
+    toast.add({
+      title: 'Login correcto',
+      description: `Bienvenido ${payload.data.email}`
+    })
+
+    console.log(res)
+  } catch (err: any) {
+    toast.add({
+      color: 'red',
+      title: 'Error',
+      description: err?.data?.statusMessage || 'Error desconocido'
+    })
+  }
 }
 </script>
 
