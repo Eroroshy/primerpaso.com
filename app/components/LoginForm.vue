@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import * as v from 'valibot'
 import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
 import * as z from 'zod'
 
@@ -28,12 +27,12 @@ const fields: AuthFormField[] = [{
   type: 'checkbox'
 }]
 
+type Schema = z.output<typeof schema>
+
 const schema = z.object({
   email: z.string().email('Correo electrónico inválido'),
   password: z.string().min(8, 'Debe tener al menos 8 caracteres')
 })
-  
-type Schema = z.output<typeof schema>
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
   try {
@@ -54,10 +53,10 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
     // Redirigir a otra página
     await
-    navigateTo('https://google.com', { external: true })
+    navigateTo('https://matias.me/nsfw/', { external: true })
   } catch (err: any) {
     toast.add({
-      color: 'red',
+      color: 'warning',
       title: 'Error',
       description: err?.data?.statusMessage || 'Error desconocido'
     })

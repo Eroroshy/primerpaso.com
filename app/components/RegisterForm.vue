@@ -49,7 +49,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     navigateTo('/login')
   } catch (err: any) {
     toast.add({
-      color: 'red',
+      color: 'primary',
       title: 'Error',
       description: err?.data?.statusMessage || 'Error desconocido'
     })
