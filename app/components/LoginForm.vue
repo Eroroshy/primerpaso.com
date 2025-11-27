@@ -9,30 +9,29 @@ const state = reactive({
 
 const toast = useToast()
 
-const fields: AuthFormField[] = [{
-  name: 'email',
-  type: 'email',
-  label: 'Correo Electrónico',
-  placeholder: 'Ingresa tu correo electrónico',
-  required: true
-}, {
-  name: 'password',
-  label: 'Contraseña',
-  type: 'password',
-  placeholder: 'Ingresa tu contraseña',
-  required: true
-}, {
-  name: 'remember',
-  label: 'Recuérdame',
-  type: 'checkbox'
-}]
-
-type Schema = z.output<typeof schema>
+const fields: AuthFormField[] = [
+  {
+    name: 'email',
+    type: 'email',
+    label: 'Correo electrónico',
+    placeholder: 'ejemplo@correo.com',
+    required: true
+  },
+  {
+    name: 'password',
+    label: 'Contraseña',
+    type: 'password',
+    placeholder: 'Ingresa tu contraseña',
+    required: true
+  }
+]
 
 const schema = z.object({
   email: z.string().email('Correo electrónico inválido'),
   password: z.string().min(8, 'Debe tener al menos 8 caracteres')
 })
+
+type Schema = z.output<typeof schema>
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
   try {
@@ -42,39 +41,42 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     })
 
     toast.add({
-      title: 'Login correcto',
-      description: `Bienvenido ${payload.data.email}`
+      title: 'Inicio de sesión correcto',
+      description: `Bienvenido, ${payload.data.email}`,
+      color: 'success'
     })
 
-    // Opcional: guardar el token
     if (res.token) {
       localStorage.setItem('token', res.token)
     }
 
-    // Redirigir a otra página
-    await
-    navigateTo('https://matias.me/nsfw/', { external: true })
+    await navigateTo('/dashboard')
   } catch (err: any) {
     toast.add({
       color: 'warning',
-      title: 'Error',
-      description: err?.data?.statusMessage || 'Error desconocido'
+      title: 'Error al iniciar sesión',
+      description: err?.data?.statusMessage || 'Ha ocurrido un error desconocido'
     })
   }
 }
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center gap-4 p-4">
-    <UPageCard class="w-full max-w-md">
-      <UAuthForm
-        :schema="schema"
-        title="Inicia Sesión"
-        description="Ingresa tus credenciales para acceder a tu cuenta."
-        icon="i-lucide-user"
-        :fields="fields"
-        @submit="onSubmit"
-      />
-    </UPageCard>
+  <div class="w-full">
+    <UAuthForm
+      :schema="schema"
+      :fields="fields"
+      class="space-y-4"
+      :ui="{
+        base: 'mt-2',
+        footer: 'mt-6',
+        body: 'space-y-4',
+        header: 'mb-4 text-center',
+        card: {
+          base: 'rounded-xl shadow-none border-none'
+        }
+      }"
+      @submit="onSubmit"
+    />
   </div>
 </template>

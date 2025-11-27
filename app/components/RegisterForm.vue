@@ -58,16 +58,21 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center p-4">
-    <UPageCard class="w-full max-w-md">
-      <UAuthForm
-        title="Crear cuenta"
-        description="Regístrate para acceder a tu nueva cuenta."
-        icon="i-lucide-user-plus"
-        :fields="fields"
-        :schema="schema"
-        @submit="onSubmit"
-      />
-    </UPageCard>
+  <div class="w-full">
+    <UAuthForm
+      :schema="schema"
+      :fields="fields"
+      class="space-y-4"
+      :ui="{
+        base: 'mt-2',
+        footer: 'mt-6',
+        body: 'space-y-4',
+        header: 'mb-4 text-center',
+        card: {
+          base: 'rounded-xl shadow-none border-none'
+        }
+      }"
+      @submit="onSubmit"
+    />
   </div>
 </template>

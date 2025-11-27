@@ -13,12 +13,16 @@ export default defineEventHandler(async (event) => {
   if (!user || user.password !== password) {
     throw createError({
       statusCode: 401,
-      statusMessage: 'Invalid credentials'
+      statusMessage: 'Credenciales incorrectas'
     })
   }
 
+  // Crear token falso simple
+  const token = Buffer.from(`${user.id_user}:${user.email}`).toString('base64')
+
   return {
     ok: true,
+    token,
     user: { id: user.id_user, email: user.email }
   }
 })
