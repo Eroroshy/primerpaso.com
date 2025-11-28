@@ -9,7 +9,7 @@ hero:
       icon: i-lucide-arrow-right
       trailing: true
       color: primary
-      to: https://ui.nuxt.com/docs/getting-started/installation/nuxt
+      to: /login
       target: _blank
       size: xl
   
@@ -17,7 +17,7 @@ hero:
       icon: i-lucide-arrow-right
       trailing: true
       color: secondary
-      to: https://ui.nuxt.com/docs/getting-started/installation/nuxt
+      to: /register
       target: _blank
       size: xl
 section:
@@ -154,7 +154,7 @@ cta:
         icon: i-lucide-arrow-right
         trailing: true
         color: primary
-        to: https://ui.nuxt.com/docs/getting-started/installation/nuxt
+        to: /login
         target: _blank
         size: xl
         variant: outline
@@ -163,7 +163,7 @@ cta:
         icon: i-lucide-arrow-right
         trailing: true
         color: secondary
-        to: https://ui.nuxt.com/docs/getting-started/installation/nuxt
+        to: /register
         target: _blank
         size: xl
         variant: outline

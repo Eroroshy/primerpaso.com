@@ -22,9 +22,8 @@ const filters = reactive({
   type: ''
 })
 
-// =============================
-// CARGAR PERFIL Y EMPLEOS
-// =============================
+// Cargar Perfil y Empleos
+
 onMounted(async () => {
   await loadProfile()
   await loadJobs()
@@ -49,10 +48,10 @@ async function loadJobs() {
   try {
     const res = await $fetch('/api/jobs')
 
-    // Si tu API devuelve id_offer en lugar de id_job, hacemos un map
+    // API devuelve id_offer y se cambia a id_job
     jobs.value = res.map(job => ({
       ...job,
-      id_job: job.id_offer  // esto mantiene el v-for como está
+      id_job: job.id_offer // esto mantiene el v-for como está
     }))
     filteredJobs.value = jobs.value
   } catch (err) {
@@ -60,6 +59,25 @@ async function loadJobs() {
   }
 }
 
+async function applyJob(job: any) {
+  try {
+    const res = await $fetch('/api/jobs/apply', {
+      method: 'POST',
+      body: { id_offer: job.id_offer },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+
+    if (res.success) {
+      toast.add({ title: res.message, color: 'success' })
+    } else {
+      toast.add({ title: res.message || 'No se pudo postular', color: 'warning' })
+    }
+  } catch (err) {
+    toast.add({ title: 'Error al postular', color: 'error' })
+  }
+}
 
 // =============================
 // FILTRO DINÁMICO
@@ -70,6 +88,7 @@ function applyFilters() {
     const matchesSearch
       = job.title.toLowerCase().includes(s)
         || job.company.toLowerCase().includes(s)
+        || job.type.toLowerCase().includes(s)
 
     const matchesLocation
       = !filters.location || job.location === filters.location
@@ -148,8 +167,14 @@ function applyFilters() {
           <p class="text-gray-500">
             {{ job.company }}
           </p>
+          <p class="text-gray-500">
+            {{ job.type }}
+          </p>
+          <p class="text-gray-500">
+            {{ job.salary }}
+          </p>
 
-          <div class="flex justify-between mt-2 text-sm">
+          <div class="flex justify-left mt-2 text-sm">
             <span class="text-primary-600">{{ job.location }}</span>
             <span>{{ job.description }}</span>
           </div>
@@ -158,9 +183,9 @@ function applyFilters() {
             color="primary"
             variant="soft"
             class="mt-4"
-            :to="`/jobs/${job.id_job}`"
+            @click="applyJob(job)"
           >
-            Ver detalles
+            Realiza una postulación
           </UButton>
         </UCard>
       </div>

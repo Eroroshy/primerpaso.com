@@ -93,6 +93,15 @@ onMounted(async () => {
         >
           Editar Perfil
         </UButton>
+
+        <UButton
+          class="mt-4"
+          color="primary"
+          icon="i-lucide-briefcase-business"
+          @click="navigateTo('/jobs')"
+        >
+          Vacantes Disponibles
+        </UButton>
       </div>
 
       <div class="bg-neutral shadow-md rounded-2xl p-6 border border-gray-200">
