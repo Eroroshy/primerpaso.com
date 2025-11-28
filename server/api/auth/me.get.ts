@@ -13,13 +13,24 @@ export default defineEventHandler(async (event) => {
   const [id_user, email] = decoded.split(':')
 
   const db = usePostgres()
-  const users = await db`
-    SELECT id_user, email, rol
-    FROM users 
-    WHERE id_user = ${id_user} AND email = ${email}
+  const rows = await db`
+    SELECT 
+      u.id_user,
+      u.email,
+      u.rol,
+
+      s.id_student,
+      s.name_student,
+      s.last_name_student,
+      s.telephone_student,
+      s.id_career
+
+    FROM users u
+    LEFT JOIN students s ON s.id_user = u.id_user
+    WHERE u.id_user = ${id_user} AND u.email = ${email}
   `
 
-  const user = users[0]
+  const user = rows[0]
 
   if (!user) {
     throw createError({ statusCode: 401, statusMessage: 'Invalid token' })
@@ -27,6 +38,9 @@ export default defineEventHandler(async (event) => {
 
   return {
     ok: true,
-    user
+    user: {
+      ...user,
+      name: `${user.name_student ?? ''} ${user.last_name_student ?? ''}`.trim()
+    }
   }
 })

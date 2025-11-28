@@ -22,9 +22,9 @@
       <RegisterForm />
 
       <div class="flex items-center my-6">
-        <div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
+        <div class="grow h-px bg-gray-300 dark:bg-gray-600" />
         <span class="px-2 text-gray-500 dark:text-gray-400 text-sm">o</span>
-        <div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
+        <div class="grow h-px bg-gray-300 dark:bg-gray-600" />
       </div>
 
       <div class="text-center text-sm text-gray-600 dark:text-gray-400">

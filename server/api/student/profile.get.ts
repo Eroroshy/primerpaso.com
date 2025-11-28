@@ -8,12 +8,12 @@ export default defineEventHandler(async (event) => {
 
   const rows = await db`
     SELECT 
-      s.name_student AS first_name,
-      s.last_name_student AS last_name,
-      s.telephone_student AS phone,
+      s.name_student AS name_student,
+      s.last_name_student AS last_name_student,
+      s.telephone_student AS telephone_student,
       c.name_career AS career,
       sch.name_school AS school,
-      sch.ubication AS ubication
+      sch.ubication AS location
     FROM students s
     JOIN careers c ON s.id_career = c.id_career
     JOIN schools sch ON c.id_school = sch.id_school
