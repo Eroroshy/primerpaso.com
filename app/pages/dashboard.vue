@@ -71,16 +71,17 @@ onMounted(async () => {
     </div>
 
     <template v-else>
-      <div class="bg-white shadow-md rounded-2xl p-6 border border-gray-200">
+      <StarsBg />
+      <div class="bg-neutral shadow-md rounded-2xl p-6 border border-gray-200">
         <h2 class="text-2xl font-bold text-primary">
           Mi Perfil
         </h2>
 
-        <p class="text-gray-600 mt-2">
+        <p class="mt-2">
           Nombre: {{ user?.name || 'Sin nombre' }}
         </p>
 
-        <p class="text-gray-600">
+        <p class="">
           Correo: {{ user?.email }}
         </p>
 
@@ -94,7 +95,7 @@ onMounted(async () => {
         </UButton>
       </div>
 
-      <div class="bg-white shadow-md rounded-2xl p-6 border border-gray-200">
+      <div class="bg-neutral shadow-md rounded-2xl p-6 border border-gray-200">
         <h2 class="text-2xl font-bold text-primary">
           Mis Postulaciones
         </h2>

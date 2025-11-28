@@ -154,6 +154,7 @@ async function deleteAccount() {
 
 <template>
   <div class="max-w-3xl mx-auto p-6 space-y-10">
+    <StarsBg />
     <div>
       <h1 class="text-3xl font-bold">
         Mi Perfil
@@ -274,18 +275,22 @@ async function deleteAccount() {
     </UCard>
 
     <UCard
-      class="border-red-400"
+      class="border border-red-600"
       :ui="{ body: 'p-6' }"
     >
-      <h2 class="text-xl font-bold text-red-600 mb-4">
+      <h1 class="text-2xl font-bold text-red-600 mb-4">
+        Zona de Peligro
+      </h1>
+
+      <h2 class="text-xl font-bold mb-4">
         Eliminar cuenta
       </h2>
 
       <UButton
         color="error"
-        variant="solid"
+        variant="soft"
         icon="i-lucide-triangle-alert"
-        class="font-bold shadow-md hover:scale-105 transition"
+        class="font-bold shadow-md transition"
         @click="deleteAccount"
       >
         Borrar mi cuenta
