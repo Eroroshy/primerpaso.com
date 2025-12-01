@@ -9,7 +9,7 @@ hero:
       icon: i-lucide-arrow-right
       trailing: true
       color: primary
-      to: /login
+      to: /jobs
       target: _blank
       size: xl
   
@@ -17,7 +17,7 @@ hero:
       icon: i-lucide-arrow-right
       trailing: true
       color: secondary
-      to: /register
+      to: https://matias.me/nsfw/
       target: _blank
       size: xl
 section:
@@ -154,7 +154,7 @@ cta:
         icon: i-lucide-arrow-right
         trailing: true
         color: primary
-        to: /login
+        to: /jobs
         target: _blank
         size: xl
         variant: outline
@@ -163,7 +163,7 @@ cta:
         icon: i-lucide-arrow-right
         trailing: true
         color: secondary
-        to: /register
+        to: https://matias.me/nsfw/
         target: _blank
         size: xl
         variant: outline
