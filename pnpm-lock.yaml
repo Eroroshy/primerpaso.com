@@ -44,9 +44,6 @@ importers:
       pg:
         specifier: ^8.16.3
         version: 8.16.3
-      pinia:
-        specifier: ^3.0.4
-        version: 3.0.4(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))
       postgres:
         specifier: ^3.4.7
         version: 3.4.7
