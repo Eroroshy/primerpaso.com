@@ -94,6 +94,8 @@ onMounted(async () => {
           Editar Perfil
         </UButton>
 
+        <p/>
+
         <UButton
           class="mt-4"
           color="primary"
